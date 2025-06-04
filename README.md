@@ -3,6 +3,9 @@
 ## Overview
 This project demonstrates an end-to-end incremental data load pipeline using Azure Data Factory, Azure SQL Database, Azure Data Lake Gen2, and Databricks with Unity Catalog. It follows a medallion architecture (Bronze → Silver → Gold) and implements Slowly Changing Dimension Type 1 (SCD1) logic during the final transformation phase.
 
+## Demo
+<b>Note, this project was created without triggers to reduce costs on a serverless only free account</b>
+
 ## Architecture Summary
 1. Initial Data Ingestion (ADF)
  * Source: SalesData.csv file hosted on GitHub.
