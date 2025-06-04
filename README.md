@@ -27,6 +27,7 @@ This project demonstrates an end-to-end incremental data load pipeline using Azu
    * All are written to the Gold folder in Azure Data Lake Gen2 using Delta format.
 
 ## Data Flow Diagram
+<pre>
 GitHub (SalesData.csv)
         ↓
 ADF Copy Data Task
@@ -42,6 +43,7 @@ Azure Data Lake Gen2 (Silver - Parquet)
 SCD1 Upserts + Star Schema Modeling
         ↓
 Azure Data Lake Gen2 (Gold - Delta Tables)
+</pre>
 
 
 ## Technologies Used
