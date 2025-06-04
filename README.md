@@ -28,21 +28,29 @@ This project demonstrates an end-to-end incremental data load pipeline using Azu
 
 ## Data Flow Diagram
 <pre>
-GitHub (SalesData.csv)
-        ↓
-ADF Copy Data Task
-        ↓
-Azure SQL (source_cars_data)
-        ↓ (Filtered by current_load > last_load)
-Azure Data Lake Gen2 (Bronze - Parquet)
-        ↓
-Databricks (Unity Catalog)
-        ↓
-Azure Data Lake Gen2 (Silver - Parquet)
-        ↓
-SCD1 Upserts + Star Schema Modeling
-        ↓
-Azure Data Lake Gen2 (Gold - Delta Tables)
+📂 GitHub (SalesData.csv)
+       ↓
+🧩 Azure Data Factory
+  └── 📥 Copy to Azure SQL (source_cars_data)
+       ↓
+🧮 Azure SQL Database
+  └── 🔍 Compare current_load vs last_load
+       ↓ (Only new rows)
+📁 Azure Data Lake Gen2 – Bronze (Parquet)
+       ↓
+💻 Azure Databricks (Unity Catalog)
+  └── 🧪 Minor transformations
+       ↓
+📁 Azure Data Lake Gen2 – Silver (Parquet)
+       ↓
+💻 Azure Databricks
+  └── ⭐ Star schema modeling  
+  └── 🔁 SCD1 upserts (Delta Tables)
+       ↓
+📁 Azure Data Lake Gen2 – Gold  
+  ├── 📊 4 Dimension Tables (Delta)  
+  └── 📈 1 Fact Table (Delta)
+
 </pre>
 
 
