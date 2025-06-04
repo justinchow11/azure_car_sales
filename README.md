@@ -3,7 +3,7 @@
 ## Overview
 This project demonstrates an end-to-end incremental data load pipeline using Azure Data Factory, Azure SQL Database, Azure Data Lake Gen2, and Databricks with Unity Catalog. It follows a medallion architecture (Bronze → Silver → Gold) and implements Slowly Changing Dimension Type 1 (SCD1) logic during the final transformation phase.
 
-## Architecture Diagram
+## Architecture Summary
 1. Initial Data Ingestion (ADF)
  * Source: SalesData.csv file hosted on GitHub.
  * Tool: Azure Data Factory (Copy Data Activity).
@@ -26,21 +26,38 @@ This project demonstrates an end-to-end incremental data load pipeline using Azu
      * 1 Fact Table
    * All are written to the Gold folder in Azure Data Lake Gen2 using Delta format.
 
+## Data Flow Diagram
+GitHub (SalesData.csv)
+        ↓
+ADF Copy Data Task
+        ↓
+Azure SQL (source_cars_data)
+        ↓ (Filtered by current_load > last_load)
+Azure Data Lake Gen2 (Bronze - Parquet)
+        ↓
+Databricks (Unity Catalog)
+        ↓
+Azure Data Lake Gen2 (Silver - Parquet)
+        ↓
+SCD1 Upserts + Star Schema Modeling
+        ↓
+Azure Data Lake Gen2 (Gold - Delta Tables)
+
+
 ## Technologies Used
 | Technology| Purpose |
 | ---------------- | ------ |
-|Azure Data Factory|   Orchestration of data pipeline and incremental load control.   |
-| SQL Hat           |   True   |
-| Codecademy Tee    |  False   |
-| Codecademy Hoodie |  False   |
-	
-🔹 Note: Triggers were not used to reduce costs; the pipeline is manually run to avoid charges on a free-tier account (which uses serverless only).
-Azure SQL Database	Staging area for source data and watermark tracking
-Azure Data Lake Storage Gen2	Scalable storage for Bronze, Silver, and Gold layers
-Azure Databricks	Data transformation, star schema modeling, and SCD1 upserts
-Unity Catalog	Centralized governance and access control across data layers
-Apache Spark	Distributed processing within Databricks
-Delta Lake	ACID-compliant storage format for reliable data management
-GitHub	Hosting the raw source CSV file (SalesData.csv)
+|Azure Data Factory|   Orchestration of data pipeline and incremental load control.<br>🔹 Note: Triggers were not used to reduce costs; the pipeline is manually run to avoid charges on a free-tier account (which uses serverless only).|
+| Azure SQL Database           |   Staging area for source data and watermark tracking   |
+| Azure Data Lake Storage Gen2    |  Scalable storage for Bronze, Silver, and Gold layers   |
+| Azure Databricks |  Data transformation, star schema modeling, and SCD1 upserts   |
+|Unity Catalog|	Centralized governance and access control across data layers|
+|Apache Spark	|Distributed processing within Databricks|
+|Delta Lake	|ACID-compliant storage format for reliable data management|
+|GitHub	|Hosting the raw source CSV file (SalesData.csv)|
 
-## Lessons Learned
+## Key Features
+ * Incremental Load Logic: Ensures only new data is processed by comparing source vs. watermark.
+ * Medallion Architecture: Clean separation of raw, cleaned, and business-ready data.
+ * Delta Lake: Enables ACID-compliant upserts for SCD1 handling in the Gold layer.
+ * Scalable & Modular: Each layer and task is independently manageable and scalable.
