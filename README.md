@@ -27,8 +27,8 @@ This project demonstrates an end-to-end incremental data load pipeline using Azu
    * All are written to the Gold folder in Azure Data Lake Gen2 using Delta format.
 
 ## Technologies Used
-| Technology              | Purpose |
-| :---------------- | ------ |
+| Technology| Purpose |
+| ---------------- | ------ |
 |Azure Data Factory|   Orchestration of data pipeline and incremental load control.   |
 | SQL Hat           |   True   |
 | Codecademy Tee    |  False   |
