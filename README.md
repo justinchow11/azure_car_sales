@@ -71,3 +71,16 @@ This project demonstrates an end-to-end incremental data load pipeline using Azu
  * Medallion Architecture: Clean separation of raw, cleaned, and business-ready data.
  * Delta Lake: Enables ACID-compliant upserts for SCD1 handling in the Gold layer.
  * Scalable & Modular: Each layer and task is independently manageable and scalable.
+
+## Why I Built It / What I Learned
+I built this project to gain hands-on experience with end-to-end data engineering workflows using the Azure ecosystem. My goal was to simulate a real-world pipeline, from ingestion to transformation to business-ready output, while learning how different Azure services integrate in a modern data platform.
+I started by using Azure Data Factory (ADF) to ingest raw CSV data from GitHub, load it into Azure SQL, and implement a basic incremental load strategy using a watermarking table. This helped me understand how ADF can be used for both one-time and ongoing ingestion patterns.
+From there, I moved the data into a bronze-silver-gold architecture in Azure Data Lake Gen2, learning how to stage data incrementally and persist it in Parquet format. I then used Databricks with Unity Catalog to perform transformations, apply a star schema design, and implement Slowly Changing Dimensions Type 1 (SCD1) using Delta Lake upserts — a key concept in real-world analytics pipelines.
+
+Throughout the project, I developed a stronger understanding of:
+ * Orchestrating incremental pipelines
+ * Building scalable data lakehouse layers
+ * Managing data catalogs and permissions with Unity Catalog
+ * Writing efficient PySpark and SQL for transformations
+ * The importance of ACID compliance in dimensional models
+
