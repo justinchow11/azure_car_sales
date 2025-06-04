@@ -29,12 +29,11 @@ This project demonstrates an end-to-end incremental data load pipeline using Azu
 ## Technologies Used
 | Technology              | Purpose |
 | :---------------- | ------ |
-| Python Hat        |   True   |
+|Azure Data Factory|   Orchestration of data pipeline and incremental load control.   |
 | SQL Hat           |   True   |
 | Codecademy Tee    |  False   |
 | Codecademy Hoodie |  False   |
 	
-Azure Data Factory	Orchestration of data pipeline and incremental load control.
 🔹 Note: Triggers were not used to reduce costs; the pipeline is manually run to avoid charges on a free-tier account (which uses serverless only).
 Azure SQL Database	Staging area for source data and watermark tracking
 Azure Data Lake Storage Gen2	Scalable storage for Bronze, Silver, and Gold layers
