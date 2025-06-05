@@ -1,0 +1,25 @@
+resources:
+  jobs:
+    Data_Model_Prod:
+      name: Data-Model-Prod
+      tasks:
+        - task_key: Silver_Data
+          notebook_task:
+            notebook_path: /Workspace/CarsProject/silver-notebook
+            source: WORKSPACE
+        - task_key: Dim_All
+          depends_on:
+            - task_key: Silver_Data
+          notebook_task:
+            notebook_path: /Workspace/CarsProject/gold-all_dims
+            base_parameters:
+              incremental_flag: "1"
+            source: WORKSPACE
+        - task_key: fact_sales
+          depends_on:
+            - task_key: Dim_All
+          notebook_task:
+            notebook_path: /Workspace/CarsProject/gold-fact-sales
+            source: WORKSPACE
+      queue:
+        enabled: true
