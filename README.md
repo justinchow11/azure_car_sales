@@ -5,6 +5,7 @@ This project demonstrates an end-to-end incremental data load pipeline using Azu
 
 ## Demo
 <b>**Note, this project was created without triggers to reduce costs on a serverless only free account</b>
+https://youtu.be/jUlBXRCVP1U
 
 ## Architecture Summary
 1. Initial Data Ingestion (ADF)
